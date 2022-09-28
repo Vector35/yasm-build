@@ -208,15 +208,14 @@ if sys.platform == 'darwin':
     if args.universal:
         cmake_params.append(("CMAKE_OSX_ARCHITECTURES", "arm64;x86_64"))
 
-# TODO: enable libxml2 for lldb
 
 cmake_params_array = []
 for option, value in cmake_params:
     cmake_params_array.append("-D{}={}".format(option, value))
 
 print(
-    ' '.join(shlex.quote(a) for a in ["cmake", str(source_path / "yasm")] + cmake_params_array + cmake_generator_array))
-if subprocess.call(["cmake", str(source_path / "yasm")] + cmake_params_array + cmake_generator_array,
+    ' '.join(shlex.quote(a) for a in ["cmake", str(source_path)] + cmake_params_array + cmake_generator_array))
+if subprocess.call(["cmake", str(source_path)] + cmake_params_array + cmake_generator_array,
                    cwd=build_path) != 0:
     print("Failed to configure yasm build")
     sys.exit(1)
