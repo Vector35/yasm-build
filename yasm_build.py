@@ -43,7 +43,7 @@ def mac_sign(path, deep=True, force=False):
         args += ["--deep"]
     if force:
         args += ["-f"]
-    args += ["--options", "runtime", "--entitlements", "entitlements.plist", "--timestamp", "-s", "Developer ID"]
+    args += ["--options", "runtime", "--timestamp", "-s", "Developer ID"]
     if path.endswith(".dmg"):
         args.append(path)
     else:
